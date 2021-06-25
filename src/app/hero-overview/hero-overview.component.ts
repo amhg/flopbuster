@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HeroService} from '../hero.service';
 import {Hero} from '../hero';
+import {AppComponent} from '../app.component';
 
 @Component({
   selector: 'app-hero-overview',
@@ -12,18 +13,19 @@ export class HeroOverviewComponent implements OnInit {
   errorMessage;
 
 
-  constructor(private heroService: HeroService) {
-    this.heroService.getHeros()
-      .subscribe(
-        (response) => {
-          console.log('response received: ' + response);
-          this.heros = response;
-        },
-        (error)  => {
-          console.error('Request failed with error');
-          this.errorMessage = error;
-        },
-      );
+  constructor(
+    private heroService: HeroService,
+    private appComponent: AppComponent
+              )
+
+  {
+    this.heroService.getHeros(
+      this.appComponent,
+      (heroCallback) => {
+        this.heros = heroCallback.content;
+        console.log('heros: ', this.heros );
+      }
+    )
   }
 
   ngOnInit(): void {

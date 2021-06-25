@@ -14,9 +14,12 @@ export class HeroService {
     private httpClient: HttpClient
   ) { }
 
-  public getHeros(){
-    return this.httpClient.get<Hero[]>('https://localhost:8080/hero').pipe(
-      map((res => res)));
+  public getHeros(app: AppComponent, callback: (heroCallback) => any){
+    console.log('Call to BE')
+    this.httpClient.get<Hero[]>('http://localhost:8080/hero')
+      .toPromise()
+      .then(heroCallback => callback(heroCallback))
+      .catch(error => app.handleHttpError(error));
 }
 
 }
