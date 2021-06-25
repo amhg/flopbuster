@@ -6,11 +6,11 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let hero of heros;">
+  <tr *ngFor="let hero of (herosObservable$ | async)">
     <td>{{hero.name}}</td>
     <td>{{hero.power}}</td>
   </tr>
   </tbody>
 </table>
 
-<pre>{{heros | json}}</pre>
+<!-- <pre>{{heros | json}}</pre> -->

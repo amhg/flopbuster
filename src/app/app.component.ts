@@ -27,6 +27,9 @@ export class AppComponent {
       if (response.status === 422) {
         this.errorType = response.error;
         console.warn('Received validation error: ' + JSON.stringify(this.errorType));
+      }else {
+        console.log("something else");
+        console.warn('Received validation error: ' + JSON.stringify(this.errorType));
       }
     }
   }
