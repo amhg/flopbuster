@@ -1,0 +1,16 @@
+<table class='table'>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Power</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let hero of heros;">
+    <td>{{hero.name}}</td>
+    <td>{{hero.power}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<pre>{{heros | json}}</pre>
